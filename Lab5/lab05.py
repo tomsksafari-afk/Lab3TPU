@@ -5,6 +5,7 @@ from typing import TypedDict
 # 01. Подготовительный эксперимент: аргументы и объекты
 # ============================================================
 
+
 def change_list(values):
     print("Внутри change_list до:", values, "id:", id(values))
     values.append(4)
@@ -51,6 +52,7 @@ print()
 # ============================================================
 # 02. Практикум по вариантам — вариант 2
 # ============================================================
+
 
 def delivery_cost(distance, /, rate=10, *, base=0):
     return distance * rate + base
@@ -128,6 +130,7 @@ assert delivery_card("Томск", paid=True, price=500) == {
 # 03. Основная задача — вариант 2
 # Распределение заказов
 # ============================================================
+
 
 class Order(TypedDict):
     number: int
@@ -209,16 +212,12 @@ def test_no_matching_orders() -> None:
 def test_empty_source() -> None:
     """Пустой исходный список не вызывает ошибку."""
     source: list[Order] = []
-    destination: list[Order] = [
-        {"number": 1000, "city": "Томск", "paid": True}
-    ]
+    destination: list[Order] = [{"number": 1000, "city": "Томск", "paid": True}]
 
     result = move_orders(source, destination, {"Томск"})
 
     assert source == []
-    assert destination == [
-        {"number": 1000, "city": "Томск", "paid": True}
-    ]
+    assert destination == [{"number": 1000, "city": "Томск", "paid": True}]
     assert result is destination
 
 
